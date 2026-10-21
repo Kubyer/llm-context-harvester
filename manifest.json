@@ -1,9 +1,15 @@
 {
   "manifest_version": 3,
   "name": "LLM Context Harvester",
-  "version": "1.1.0",
-  "description": "Exports full Claude, Gemini and Meta AI conversations (messages, reasoning traces, artifacts, diagrams, math) to Markdown and unified JSON.",
-  "permissions": ["activeTab", "scripting", "storage", "downloads", "clipboardWrite"],
+  "version": "1.1.1",
+  "description": "Export full Claude, Gemini and Meta AI chats (reasoning, artifacts, code) to Markdown + JSON.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "downloads",
+    "clipboardWrite"
+  ],
   "host_permissions": [
     "https://claude.ai/*",
     "https://gemini.google.com/*",
@@ -32,7 +38,9 @@
         "https://www.meta.ai/*",
         "https://meta.ai/*"
       ],
-      "js": ["src/main-interceptor.js"],
+      "js": [
+        "src/main-interceptor.js"
+      ],
       "world": "MAIN",
       "run_at": "document_start"
     },

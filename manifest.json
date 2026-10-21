@@ -1,0 +1,56 @@
+{
+  "manifest_version": 3,
+  "name": "LLM Context Harvester",
+  "version": "1.1.0",
+  "description": "Exports full Claude, Gemini and Meta AI conversations (messages, reasoning traces, artifacts, diagrams, math) to Markdown and unified JSON.",
+  "permissions": ["activeTab", "scripting", "storage", "downloads", "clipboardWrite"],
+  "host_permissions": [
+    "https://claude.ai/*",
+    "https://gemini.google.com/*",
+    "https://www.meta.ai/*",
+    "https://meta.ai/*"
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "LLM Context Harvester",
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://claude.ai/*",
+        "https://gemini.google.com/*",
+        "https://www.meta.ai/*",
+        "https://meta.ai/*"
+      ],
+      "js": ["src/main-interceptor.js"],
+      "world": "MAIN",
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "https://claude.ai/*",
+        "https://gemini.google.com/*",
+        "https://www.meta.ai/*",
+        "https://meta.ai/*"
+      ],
+      "js": [
+        "src/isolated-orchestrator.js",
+        "src/adapters/claude.js",
+        "src/adapters/gemini.js",
+        "src/adapters/meta.js"
+      ],
+      "world": "ISOLATED",
+      "run_at": "document_idle"
+    }
+  ]
+}

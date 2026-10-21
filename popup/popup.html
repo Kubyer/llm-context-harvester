@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LLM Context Harvester</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header class="top">
+      <img src="../icons/icon48.png" alt="" class="logo" width="32" height="32" />
+      <div class="brand">
+        <h1>LLM Context Harvester</h1>
+        <p id="tab-title" class="muted">Detecting the active tab…</p>
+      </div>
+      <span id="platform" class="badge">—</span>
+    </header>
+
+    <section id="unsupported" class="notice" hidden>
+      Open a conversation on <strong>claude.ai</strong>, <strong>gemini.google.com</strong> or <strong>meta.ai</strong>, then click the extension icon again.
+    </section>
+
+    <main id="app">
+      <button id="harvest" class="primary" type="button">Harvest Conversation (MD + JSON)</button>
+      <button id="abort" class="ghost" type="button" hidden>Stop &amp; keep partial result</button>
+
+      <div class="actions">
+        <button id="export-md" type="button">Export Markdown (.md)</button>
+        <button id="export-json" type="button">Export Unified JSON (.json)</button>
+        <button id="copy-md" type="button" class="wide">Copy Markdown to Clipboard</button>
+      </div>
+
+      <fieldset class="options">
+        <label><input type="checkbox" id="opt-thinking" checked /> Include reasoning traces (thinking, searches, tools)</label>
+        <label><input type="checkbox" id="opt-autodl" checked /> Auto-download .md + .json when the harvest ends</label>
+      </fieldset>
+
+      <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress">
+        <div id="bar"></div>
+      </div>
+      <p id="summary" class="summary" hidden></p>
+      <ol id="log" class="log" aria-live="polite"></ol>
+    </main>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

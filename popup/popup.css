@@ -1,0 +1,236 @@
+:root {
+  --bg: #ffffff;
+  --surface: #f4f4f7;
+  --border: #dedee6;
+  --text: #17171c;
+  --muted: #6b6b78;
+  --accent: #5b4cf0;
+  --accent-text: #ffffff;
+  --accent-soft: #ecebfe;
+  --ok: #138a4b;
+  --warn: #b26a00;
+  --err: #c62f2f;
+  --mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #15151a;
+    --surface: #1f1f26;
+    --border: #30303a;
+    --text: #ececf1;
+    --muted: #9a9aa8;
+    --accent: #8b7dff;
+    --accent-text: #0f0f14;
+    --accent-soft: #2a2745;
+    --ok: #4cc38a;
+    --warn: #f0b04a;
+    --err: #ff7a7a;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 13px/1.45 system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+  width: 390px;
+  padding: 14px;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.logo {
+  border-radius: 8px;
+  flex: none;
+}
+
+.brand {
+  min-width: 0;
+  flex: 1;
+}
+
+h1 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.muted {
+  margin: 1px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.badge {
+  flex: none;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.notice {
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border-radius: 9px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  padding: 8px 10px;
+  transition: filter 0.12s ease, opacity 0.12s ease;
+}
+
+button:hover:not(:disabled) {
+  filter: brightness(0.96);
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.primary {
+  width: 100%;
+  padding: 11px 12px;
+  border: none;
+  background: var(--accent);
+  color: var(--accent-text);
+  font-weight: 650;
+}
+
+.ghost {
+  width: 100%;
+  margin-top: 6px;
+  background: transparent;
+  color: var(--err);
+  border-color: var(--err);
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.actions button {
+  font-size: 12px;
+  white-space: nowrap;
+  padding: 8px 6px;
+}
+
+.actions .wide {
+  grid-column: 1 / -1;
+}
+
+.options {
+  margin: 10px 0 0;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  display: grid;
+  gap: 4px;
+}
+
+.options label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.progress {
+  margin-top: 12px;
+  height: 6px;
+  border-radius: 99px;
+  background: var(--surface);
+  overflow: hidden;
+}
+
+#bar {
+  height: 100%;
+  width: 0;
+  background: var(--accent);
+  transition: width 0.25s ease;
+}
+
+.summary {
+  margin: 8px 0 0;
+  padding: 8px 10px;
+  border-radius: 9px;
+  background: var(--accent-soft);
+  font-size: 12px;
+}
+
+.log {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 8px;
+  max-height: 210px;
+  overflow-y: auto;
+  border-radius: 9px;
+  background: var(--surface);
+  font: 11px/1.5 var(--mono);
+}
+
+.log:empty::before {
+  content: 'Progress will appear here.';
+  color: var(--muted);
+}
+
+.log li {
+  display: flex;
+  gap: 6px;
+  word-break: break-word;
+}
+
+.log time {
+  flex: none;
+  color: var(--muted);
+}
+
+.log .warn {
+  color: var(--warn);
+}
+
+.log .error {
+  color: var(--err);
+}
+
+.log .success {
+  color: var(--ok);
+  font-weight: 600;
+}
